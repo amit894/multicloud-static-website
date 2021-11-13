@@ -1,2 +1,2 @@
 # multicloud-static-website
-Public Repository for hosting static website on GCP/Azure/AWS
+Beginner's Guide to hosting static website on GCP/Azure/AWS
