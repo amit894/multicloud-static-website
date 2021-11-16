@@ -20,3 +20,11 @@ resource "aws_s3_bucket" "website_bucket" {
     error_document = "index.html"
   }
 }
+
+resource "aws_s3_bucket_object" "index" {
+  bucket      = aws_s3_bucket.website_bucket.bucket
+  key         = "index.html"
+  source      = "../aws-basic/index.html"
+  acl         = "public-read"
+
+}
