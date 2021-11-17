@@ -12,19 +12,28 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_s3_bucket" "website_bucket" {
-  bucket = "staticwebsiteacnt894"
+resource "aws_s3_bucket" "website" {
+  bucket = "${var.prefix}894"
   acl = "public-read"
   website {
     index_document = "index.html"
-    error_document = "index.html"
+    error_document = "error.html"
   }
 }
 
 resource "aws_s3_bucket_object" "index" {
-  bucket      = aws_s3_bucket.website_bucket.bucket
+  bucket      = aws_s3_bucket.website.bucket
   key         = "index.html"
   source      = "../aws-basic/index.html"
+  content_type = "text/html"
+  acl         = "public-read"
+
+}
+
+resource "aws_s3_bucket_object" "error" {
+  bucket      = aws_s3_bucket.website.bucket
+  key         = "error.html"
+  source      = "../aws-basic/error.html"
   content_type = "text/html"
   acl         = "public-read"
 
